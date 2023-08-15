@@ -9,6 +9,7 @@ endQuizEl.style.display = "none"
 var scoreEl = document.querySelector(".scoreEl")
 var initials = document.querySelector(".initials")
 var saveBtn = document.querySelector(".saveBtn")
+var userHistory = JSON.parse(localStorage.getItem("userHistory")) || []
 
 var questionIndex = 0;
 var score = 0;
@@ -79,6 +80,7 @@ function endQuiz() {
             initials: initialsValue,
             score: score
         }
-        console.log(userInfo)
+        userHistory.push(userInfo)
+        localStorage.setItem("userHistory", JSON.stringify(userHistory))
     })
 }
