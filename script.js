@@ -9,15 +9,21 @@ endQuizEl.style.display = "none"
 var scoreEl = document.querySelector(".scoreEl")
 var initials = document.querySelector(".initials")
 var saveBtn = document.querySelector(".saveBtn")
+var timeEl = document.querySelector(".timeEl")
 var userHistory = JSON.parse(localStorage.getItem("userHistory")) || []
 
 var questionIndex = 0;
 var score = 0;
+var timer = 60
 
 startBtn.addEventListener("click", function() {
     welcome.style.display = "none"
     quiz.style.display = "block"
     displayQuiz(questionIndex)
+    setInterval(function() {
+        timer--
+        timeEl.innerHTML = "Time: " + timer
+    }, 1000)
 })
 
 var myQuestions = [
