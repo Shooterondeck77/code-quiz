@@ -20,7 +20,7 @@ var myQuestions = [
             "A: True/False",
             "B: A string",
             "C: A number",
-            "D: Both A&B"
+            "D: Both A and B"
         ],
         correctAnswer: "A: True/False"
     },
@@ -43,5 +43,14 @@ function displayQuiz(questionIndex) {
         var li = document.createElement("li")
         li.innerHTML = value
         answersList.append(li)
+        li.addEventListener("click", function(event) {
+            var correct = myQuestions[questionIndex].correctAnswer
+            var choice = event.target.innerHTML
+            if(choice === correct) {
+                console.log("correct")
+            } else {
+                console.log("wrong")
+            }
+        })
     })
 }
