@@ -6,6 +6,7 @@ var questionEl = document.querySelector(".questionEl")
 var answersList = document.querySelector(".answersList")
 
 var questionIndex = 0;
+var score = 0;
 
 startBtn.addEventListener("click", function() {
     welcome.style.display = "none"
@@ -37,6 +38,7 @@ var myQuestions = [
 ]
 
 function displayQuiz(questionIndex) {
+    answersList.innerHTML = ""
     questionEl.innerHTML = myQuestions[questionIndex].question
     var answerSet = myQuestions[questionIndex].answers
     answerSet.forEach(function(value) {
@@ -48,9 +50,20 @@ function displayQuiz(questionIndex) {
             var choice = event.target.innerHTML
             if(choice === correct) {
                 console.log("correct")
+                score = score + 20
             } else {
                 console.log("wrong")
             }
+            questionIndex++;
+            if(questionIndex <= myQuestions.length - 1) {
+                displayQuiz(questionIndex)
+            } else {
+                endQuiz()
+            }
         })
     })
+}
+
+function endQuiz() {
+    quiz.style.display = "none"
 }
