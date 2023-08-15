@@ -4,6 +4,11 @@ var quiz = document.querySelector(".quiz")
 quiz.style.display = "none"
 var questionEl = document.querySelector(".questionEl")
 var answersList = document.querySelector(".answersList")
+var endQuizEl = document.querySelector(".endQuiz")
+endQuizEl.style.display = "none"
+var scoreEl = document.querySelector(".scoreEl")
+var initials = document.querySelector(".initials")
+var saveBtn = document.querySelector(".saveBtn")
 
 var questionIndex = 0;
 var score = 0;
@@ -66,4 +71,14 @@ function displayQuiz(questionIndex) {
 
 function endQuiz() {
     quiz.style.display = "none"
+    endQuizEl.style.display = "block"
+    scoreEl.innerHTML = "You got a score of: " + score
+    saveBtn.addEventListener("click", function() {
+        var initialsValue = initials.value
+        var userInfo = {
+            initials: initialsValue,
+            score: score
+        }
+        console.log(userInfo)
+    })
 }
