@@ -5,16 +5,17 @@ quiz.style.display = "none"
 var questionEl = document.querySelector(".questionEl")
 var answersList = document.querySelector(".answersList")
 
+var questionIndex = 0;
 
 startBtn.addEventListener("click", function() {
     welcome.style.display = "none"
     quiz.style.display = "block"
+    displayQuiz(questionIndex)
 })
-
 
 var myQuestions = [
     {
-        question: "What is Boolean? ",
+        question: "What is a boolean value? ",
         answers: [
             "A:True/False",
             "B:A string",
@@ -24,13 +25,17 @@ var myQuestions = [
         correctAnswer: "A:True/False"
     },
     {
-        question: "What is HTML? ",
+        question: "How do we initialize a variable? ",
         answers: [
-            "A:True/False",
-            "B:A string",
-            "C:A number",
-            "D:Both A&B"
+            "A: for",
+            "B: if",
+            "C: var",
+            "D: while"
         ],
-        correctAnswer: A
+        correctAnswer:  "C: var",
     }
 ]
+
+function displayQuiz(questionIndex) {
+    questionEl.innerHTML = myQuestions[questionIndex].question
+}
