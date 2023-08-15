@@ -17,12 +17,12 @@ var myQuestions = [
     {
         question: "What is a boolean value? ",
         answers: [
-            "A:True/False",
-            "B:A string",
-            "C:A number",
-            "D:Both A&B"
+            "A: True/False",
+            "B: A string",
+            "C: A number",
+            "D: Both A&B"
         ],
-        correctAnswer: "A:True/False"
+        correctAnswer: "A: True/False"
     },
     {
         question: "How do we initialize a variable? ",
@@ -38,4 +38,10 @@ var myQuestions = [
 
 function displayQuiz(questionIndex) {
     questionEl.innerHTML = myQuestions[questionIndex].question
+    var answerSet = myQuestions[questionIndex].answers
+    answerSet.forEach(function(value) {
+        var li = document.createElement("li")
+        li.innerHTML = value
+        answersList.append(li)
+    })
 }
