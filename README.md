@@ -15,7 +15,7 @@ JS
 
 ## Screenshot of main page
 
-![Alt text](<Screenshot 2023-08-15 at 10.47.07 PM (2).png>)
+(![Alt text](<Screenshot 2023-08-15 at 10.47.07 PM.png>)
 
 ## Deployed website
 
