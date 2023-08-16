@@ -10,7 +10,18 @@ var scoreEl = document.querySelector(".scoreEl")
 var initials = document.querySelector(".initials")
 var saveBtn = document.querySelector(".saveBtn")
 var timeEl = document.querySelector(".timeEl")
+var highscoreEL = document.querySelector(".highscoreEL");
+highscoreEL.style.display = "none"
 var userHistory = JSON.parse(localStorage.getItem("userHistory")) || []
+var highscoreList = document.querySelector(".highscoreList"); 
+highscoreList.style.display = "none";
+var highscorename = document.querySelector(".highscorename"); 
+highscorename.style.display = "none"
+
+
+
+var congratulationsMessage = document.querySelector(".congratulationsMessage");
+
 
 var questionIndex = 0;
 var score = 0;
@@ -29,6 +40,7 @@ startBtn.addEventListener("click", function() {
 var myQuestions = [
     {
         question: "What is a boolean value? ",
+        
         answers: [
             "A: True/False",
             "B: A string",
@@ -46,8 +58,30 @@ var myQuestions = [
             "D: while"
         ],
         correctAnswer:  "C: var",
-    }
-]
+    },
+    {
+        question: "Which company developed javascript?",
+          answers: [
+            "A: Microsoft",
+            "B: IBM",
+            "C: Netscape",
+            "D: Sony"
+          ],
+            correctAnswer:  "C: Netscape",
+        },
+    {
+        question: "what is \"===\" operator mean?",
+        answers:[
+        "A: absolute",
+        "B: equal",
+        "C: sum",
+        "D: add",
+        ],
+        correctAnswer:  "A: absolute"
+},
+
+];
+
 
 function displayQuiz(questionIndex) {
     answersList.innerHTML = ""
@@ -84,9 +118,51 @@ function endQuiz() {
         var initialsValue = initials.value
         var userInfo = {
             initials: initialsValue,
-            score: score
-        }
-        userHistory.push(userInfo)
-        localStorage.setItem("userHistory", JSON.stringify(userHistory))
-    })
+            score: score}
+        })
 }
+    
+
+saveBtn.addEventListener("click", function() {
+    var initialsValue = initials.value; 
+    
+    if (initialsValue !== "") {
+        endQuizEl.style.display = "none";
+        highscoreEL.style.display = "block";
+        displayHighscores();
+        
+        var userInfo = {
+            initials: initialsValue,
+            score: score
+        };
+        userHistory.push(userInfo);
+        localStorage.setItem("userHistory", JSON.stringify(userHistory));
+    } else {
+        alert("Please enter your initials before saving.");
+    }
+
+})
+
+function displayHighscores() {
+    endQuizEl.style.display = "none"
+    highscoreEL.style.display = "block"
+    highscoreEL.innerHTML = "Congratulations on completing the quiz!"
+    highscorename.style.display = "block"
+    highscorename.innerHTML = "High Scores"
+    highscoreList.style.display = "block"
+   
+
+    highscoreList.innerHTML = "";
+    for (var i = 0; i < Math.min(userHistory.length, 10); i++) {
+        var listItem = document.createElement("li");
+        listItem.innerHTML = userHistory[i].initials + ": " + userHistory[i].score;
+        highscoreList.appendChild(listItem);
+    };
+}
+
+    
+    
+ userHistory.push(score) 
+        localStorage.setItem("userHistory", JSON.stringify(userHistory))
+    
+    
